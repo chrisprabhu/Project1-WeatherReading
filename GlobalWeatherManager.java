@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class GlobalWeatherManager implements GlobalWeatherManagerInterface
-{
+public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
 
     // Instance Variables
     private final ArrayList<WeatherReading> weatherReadingsArrayList = new ArrayList<>();
@@ -28,21 +27,12 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
 
                 WeatherReading weatherReading = new WeatherReading(
                         weatherStrings[0],
-                        // Region
                         weatherStrings[1],
-                        // Country
                         weatherStrings[2],
-                        // State
                         weatherStrings[3],
-                        // City
                         weatherStrings[4],
-                        // Month
                         weatherStrings[5],
-                        // Day
-                        weatherStrings[6],
-                        // Year
-                        weatherStrings[7]
-                ); // AvgTemperature
+                        weatherStrings[6]);
                 weatherReadingsArrayList.add(weatherReading);
 
                 // System.out.println(ArrayListOfWeatherReadings.get(i)); i++;
@@ -69,7 +59,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
 
     public static void main(String[] args) throws FileNotFoundException {
         GlobalWeatherManager myWeatherManager  = new GlobalWeatherManager(new File("documents/city_temperature.csv"));
-        WeatherReading[]     getReadingsOutput = myWeatherManager.getReadings(0,3);
+        WeatherReading[]     getReadingsOutput = myWeatherManager.getReadings(0, 3);
         System.out.println(getReadingsOutput[0]);
         System.out.println(getReadingsOutput[1]);
         System.out.println(getReadingsOutput[2]);
@@ -99,11 +89,11 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
      @return
      */
     public WeatherReading[] getReadings(
-            int index,int count
+            int index, int count
                                        )
     {
 
-        return weatherReadingsArrayList.subList(index,index + count).toArray(new WeatherReading[0]);
+        return weatherReadingsArrayList.subList(index, index + count).toArray(new WeatherReading[0]);
     }
 
     /**
@@ -116,7 +106,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
      @return
      */
     public WeatherReading[] getReadings(
-            int index,int count,int month,int day
+            int index, int count, int month, int day
                                        )
     {
         return new WeatherReading[0];
@@ -130,10 +120,10 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
      @return
      */
     public CityListStats getCityListStats(
-            String country,String state,String city
+            String country, String state, String city
                                          )
     {
-        return new CityListStats(country,state,city);
+        return new CityListStats(country, state, city);
     }
 
     /**
@@ -141,6 +131,16 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
      */
     public Iterator<WeatherReading> iterator() {
         return weatherReadingsArrayList.iterator();
+    }
+
+    /**
+     @param readings
+
+     @return
+     */
+    @Override
+    public double getTemperatureLinearRegressionSlope(WeatherReading[] readings) {
+        return 0;
     }
 
     /**
@@ -162,7 +162,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
      @return
      */
     public double calcLinearRegressionSlope(
-            Integer[] x,Double[] y
+            Integer[] x, Double[] y
                                            )
     {
         int n = x.length;
@@ -184,7 +184,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface
                 Ex2 += x[i] * x[i];
 
             }
-        return (n * Exy - Ex * Ey) / (n * Ex2 - Math.pow(Ex,2));
+        return (n * Exy - Ex * Ey) / (n * Ex2 - Math.pow(Ex, 2));
     }
 
 }
