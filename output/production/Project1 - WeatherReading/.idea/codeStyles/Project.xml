@@ -37,8 +37,7 @@
       <option name="ALIGN_CONSECUTIVE_VARIABLE_DECLARATIONS" value="true" />
       <option name="ALIGN_CONSECUTIVE_ASSIGNMENTS" value="true" />
       <option name="ALIGN_SUBSEQUENT_SIMPLE_METHODS" value="true" />
-      <option name="CALL_PARAMETERS_WRAP" value="5" />
-      <option name="METHOD_PARAMETERS_WRAP" value="5" />
+      <option name="SPACE_BEFORE_TYPE_PARAMETER_LIST" value="true" />
       <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="PARENTHESES_EXPRESSION_RPAREN_WRAP" value="true" />
       <option name="BINARY_OPERATION_WRAP" value="5" />
@@ -58,6 +57,7 @@
       <option name="WRAP_ON_TYPING" value="1" />
       <indentOptions>
         <option name="USE_RELATIVE_INDENTS" value="true" />
+        <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
       </indentOptions>
     </codeStyleSettings>
   </code_scheme>
