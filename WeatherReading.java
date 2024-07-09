@@ -1,9 +1,2 @@
-public record WeatherReading(
-        String country,
-        String state,
-        String city,
-        String month,
-        String day,
-        String year,
-        String avgTemperature
-) {}
+// Purpose: This file is a record class that stores the weather reading data.
+public record WeatherReading implements Comparable <WeatherReading> (String country,String state,String city,String month,String day,String year,String avgTemperature){}
