@@ -1,6 +1,13 @@
-// Purpose: This file is a record class that stores the weather reading data.
+// region,
+// country,
+// state,
+// city (all String),
+// month,
+// day,
+// year (all int),
+// avgTemperature (double)
 public record WeatherReading(
-        String country, String state, String city, String month, String day, String year, String avgTemperature
+        String region, String country, String state, String city, int month, int day, int year, double avgTemperature
 ) implements Comparable <WeatherReading> {
     // ToDo Deal with nulls
     // Country, State, City, Year, Month, Day
