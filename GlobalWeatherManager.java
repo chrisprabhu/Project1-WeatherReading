@@ -19,20 +19,19 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
     private       int                        readingCount;
     /** The list of weather readings */
     private final ArrayList <WeatherReading> weatherList = new ArrayList <WeatherReading>();
-    /** The file of weather data to be read */
-    private final File                       file;
     
     /**
      * Constructor should take a single parameter, the file of weather data to be read.
+     * Reads in the file and store the data in the weatherReadingsArrayList
      * @param file the dataset of weather data to be read
      * @throws FileNotFoundException if the file is not found
      */
     public GlobalWeatherManager(File file) throws FileNotFoundException {
-        // Read in the file and store the data in the weatherReadingsArrayList
         /** The file is the weather data to be read */
-        this.file = file;
+        /** The file of weather data to be read */
         /** The number of readings in the file */
         this.readingCount = 0;
+        
         Scanner myReader = new Scanner( file );
         myReader.nextLine();
         
@@ -63,7 +62,6 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
     }
     
     /**
-     * main method
      * @param args the command line arguments
      * @throws FileNotFoundException if the file is not found
      */
@@ -71,18 +69,21 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "documents/city_temperature.csv" ) );
         
         // Debug Statements
-        System.out.println( "gwm.weatherReadingsArrayList.size(): " + gwm.weatherList.size() );
+//        System.out.println( "gwm.weatherReadingsArrayList.size(): " + gwm.weatherList.size() );
         
-        System.out.println( ("forwards...") );
+        System.out.println( ("Reading from the front: ") );
         for (int i = 0; i < 3; i++) {
             System.out.println( "gwm.weatherReadingsArrayList.get(i): " + gwm.weatherList.get( i ) );
         }
-        System.out.println( ("backwards...") );
+        System.out.println();
+        System.out.println( ("Reading from the back: ") );
         for (int i = gwm.weatherList.size() - 1; i > gwm.weatherList.size() - 4; i--) {
             System.out.println( "gwm" + ".weatherReadingsArrayList.get(i): " + gwm.weatherList.get( i ) );
         }
+        System.out.println();
         // city state country
-        System.out.println( "gwm.getCityListStats(): " + gwm.getCityListStats( "US", "Texas", "Abilene" ) );
+        System.out.println( "gwm.getCityListStats( \"US\", \"Texas\", \"Abilene\" ) ); : " + gwm.getCityListStats( "US"
+                , "Texas", "Abilene" ) );
     }
     
     
@@ -93,7 +94,6 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
     
     @Override
     public WeatherReading getReading(int index) {
-        // WeatherReading weatherReading1 = weatherReading;
         WeatherReading weatherReading = weatherList.get( index );
         return weatherReading;
     }
@@ -107,11 +107,6 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
     public WeatherReading[] getReadings(int index, int count, int month, int day) {
         return new WeatherReading[0];
     }
-    
-    //    ToDo: "Create a record (not a class) to hold list statistics for a city, useful for method returns.
-    //     Include these fields, in this order, with exactly these data types:
-    //     startingIndex(int), count (int), years (int[])."
-    //     public record CityListStats(int startingIndex, int count, int[] years)
     
     @Override
     public CityListStats getCityListStats(String country, String state, String city) {
@@ -146,7 +141,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         int                 starting_index = location;
         int                 count          = 1;
         ArrayList <Integer> years          = new ArrayList <Integer>();
-        System.out.println( "location: " + location );
+//        System.out.println( "location: " + location );
         if (location > -1) {
             // Find the leftmost term.
             while (weatherList.get( starting_index ).compareCountryStateCity( searchTerm ) == 0) starting_index--;
