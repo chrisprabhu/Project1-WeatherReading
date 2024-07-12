@@ -11,8 +11,8 @@ import java.util.*;
 // TODO.
 // TODO recreate final design docs: UML Class and Object
 // TODO 3.2 Don’tUse These•For loading file data:  no parallel arrays or any other data structures or collections;
-//  such use will cause work to be rejectedand returned for rework.•For other methods, create no additional
-//  ArrayListsexcept perhaps in getCityListStatswhere it might be convenient for working with years.•Stream
+//  such use will cause work to be rejected and returned for rework.•For other methods, create no additional
+//  ArrayLists except perhaps in getCityListStats where it might be convenient for working with years.•Stream
 //  operations  (including stream(),  asList(),  and  similar  methods).These  are  inefficient  (object overhead) and unnecessary when we’re coding inside a collection and have direct access to data.
 
 public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
