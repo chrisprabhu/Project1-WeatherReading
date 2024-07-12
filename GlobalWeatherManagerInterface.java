@@ -83,5 +83,4 @@ public interface GlobalWeatherManagerInterface {
      */
     public double calcLinearRegressionSlope(Integer[] x, Double[] y);
 
-
 }
