@@ -124,13 +124,11 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
             else {
                 if (compare < 0) {
                     min = mid + 1; // too small
-                    continue;  // found it!
                 }
                 
                 // compare > 0
                 else {
                     max = mid - 1; // too large
-                    continue;  // found it!
                 }
             }
         }
@@ -138,18 +136,26 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         int                 starting_index = location;
         int                 count          = 1;
         ArrayList <Integer> years          = new ArrayList <Integer>();
-        
+        System.out.println( "location: " + location );
         if (location > -1) {
             // Find the leftmost term.
             while (weatherList.get( starting_index ).compareCountryStateCity( searchTerm ) == 0) starting_index--;
-            
+            // 2507503
             // Sweep right to find the rightmost term.
             while (weatherList.get( starting_index + count ).compareCountryStateCity( searchTerm ) == 0) {
                 count++;
-                years.add( Integer.valueOf( weatherList.get( starting_index + count ).year() ) );
+                if (!years.contains( weatherList.get( starting_index + count ).year() )) {
+                    years.add( weatherList.get( starting_index + count ).year() );
+                }
             }
         }
         int[] yearsArray = new int[years.size()];
+        
+        for (int i = 0; i < years.size(); i++) {
+            yearsArray[i] = years.get( i );
+        }
+        
+        ;
         return new CityListStats( starting_index, count, yearsArray );
     }
     
