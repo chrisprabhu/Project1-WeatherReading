@@ -15,17 +15,17 @@ import java.util.*;
  * @version 2024-07-11
  * */
 public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
-    /**
-     * The number of readings in the file
-     */
+    /** The number of readings in the file */
     private       int                        readingCount;
+    /** The list of weather readings */
     private final ArrayList <WeatherReading> weatherList = new ArrayList <WeatherReading>();
+    /** The file of weather data to be read */
     private final File                       file;
     
     /**
      * Constructor should take a single parameter, the file of weather data to be read.
      * @param file the dataset of weather data to be read
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the file is not found
      */
     public GlobalWeatherManager(File file) throws FileNotFoundException {
         // Read in the file and store the data in the weatherReadingsArrayList
@@ -64,8 +64,8 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
     
     /**
      * main method
-     * @param args
-     * @throws FileNotFoundException
+     * @param args the command line arguments
+     * @throws FileNotFoundException if the file is not found
      */
     public static void main(String[] args) throws FileNotFoundException {
         GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "documents/city_temperature.csv" ) );
@@ -84,6 +84,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         // city state country
         System.out.println( "gwm.getCityListStats(): " + gwm.getCityListStats( "US", "Texas", "Abilene" ) );
     }
+    
     
     @Override
     public int getReadingCount() {
@@ -179,7 +180,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
      temperature data of -99.0, a default value indicating no temperature data was present.
      Must not be null and must contain at least two readings.
      
-     @return
+     @return the slope of the best-fit line.
      */
     public double getTemperatureLinearRegressionSlope(WeatherReading[] readings) {
         if (readings == null || readings.length < 2)
@@ -201,7 +202,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
      @param x an array of x values; must not be null and must contain at least two elements.
      @param y an array of y values; must be the same length as the x array and must not be null.
      
-     @return
+     @return the slope of the best-fit line.
      */
     public double calcLinearRegressionSlope(Integer[] x, Double[] y) {
         int n = x.length;
