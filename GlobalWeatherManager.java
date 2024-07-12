@@ -1,28 +1,37 @@
+/**
+ GlobalWeatherManager.java
+ <p>
+ This class should implement the GlobalWeatherManagerInterface interface.
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-// TODO. -Xdoclint:all check
-// TODO. 3.3Write Preconditions
-//  Write preconditions where they make sense, especially where Java won’t throw a reasonable exception.  In the future, you should always think about these, even if the project doesn’t specifically mention it.You don’t need them for the record holding file data; let’s trust that datafor this project.
-// TODO. 3.4 Implement Other Methods from Interface's JavaDoc. that JavaDoc can be brought into the implementing class.
-// TODO.
-// TODO.
-// TODO.
-// TODO.
-// TODO recreate final design docs: UML Class and Object
-// TODO 3.2 Don’tUse These•For loading file data:  no parallel arrays or any other data structures or collections;
-//  such use will cause work to be rejected and returned for rework.•For other methods, create no additional
-//  ArrayLists except perhaps in getCityListStats where it might be convenient for working with years.•Stream
-//  operations  (including stream(),  asList(),  and  similar  methods).These  are  inefficient  (object overhead) and unnecessary when we’re coding inside a collection and have direct access to data.
 
+/**
+ * main() creates the GlobalWeatherManager object with the provided dataset.
+ * @author Interface from Bill Barry
+ * @author Chris Prabhu
+ * @version 2024-07-11
+ * */
 public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
+    /**
+     * The number of readings in the file
+     */
     private       int                        readingCount;
     private final ArrayList <WeatherReading> weatherList = new ArrayList <WeatherReading>();
     private final File                       file;
     
+    /**
+     * Constructor should take a single parameter, the file of weather data to be read.
+     * @param file the dataset of weather data to be read
+     * @throws FileNotFoundException
+     */
     public GlobalWeatherManager(File file) throws FileNotFoundException {
         // Read in the file and store the data in the weatherReadingsArrayList
-        this.file         = file;
+        /** The file is the weather data to be read */
+        this.file = file;
+        /** The number of readings in the file */
         this.readingCount = 0;
         Scanner myReader = new Scanner( file );
         myReader.nextLine();
@@ -51,13 +60,13 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         // country, state, city, year, month, and day (note the omission of region).
         Collections.sort( weatherList );
         
-        //        Iterator <WeatherReading> iterator = weatherReadingsArrayList.iterator();
-        //        while (iterator.hasNext()) {
-        //            WeatherReading currentWeatherReading = iterator.next();
-        //        }
-        
     }
     
+    /**
+     * main method
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
         GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "documents/city_temperature.csv" ) );
         

@@ -1,12 +1,15 @@
-// region,
-// country,
-// state,
-// city (all String),
-// month,
-// day,
-// year (all int),
-// avgTemperature (double)
 // ToDo Deal with nulls
+/**
+ * Represents a weather reading.
+ * @param region the region of the reading.
+ * @param country the country of the reading.
+ * @param state the state of the reading.
+ * @param city the city of the reading.
+ * @param month the month of the reading.
+ * @param day the day of the reading.
+ * @param year the year of the reading.
+ * @param avgTemperature the average temperature of the reading.
+ */
 public record WeatherReading(
         String region, String country, String state, String city, int month, int day, int year, double avgTemperature
 ) implements Comparable <WeatherReading> {
@@ -22,6 +25,10 @@ public record WeatherReading(
     }
     
     @Override
+    /**
+     * @obj the object to compare to.
+     * @return true if the objects is the same type and has all the same values.
+     */
     public boolean equals(Object obj) {
         //        if (compareTo( (WeatherReading) obj ) != 0) return false;
         if (this == obj) return true;
@@ -37,7 +44,12 @@ public record WeatherReading(
         if (Double.compare( other.avgTemperature, avgTemperature ) != 0) return false;
         return true;
     }
-    
+    /**
+     * Compares the country, state, and city of this WeatherReading to another WeatherReading for sorting.
+     * @param other the other WeatherReading to compare to.
+     * @return a negative integer, zero, or a positive integer as this WeatherReading is less than, equal to, or
+     *         greater than the other WeatherReading lexicographically.
+     */
     public int compareCountryStateCity(WeatherReading other) {
         if (!this.country.equals( other.country )) return this.country.compareTo( other.country );// country
         else if (!this.state.equals( other.state )) return this.state.compareTo( other.state ); // state
