@@ -66,7 +66,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
      * @throws FileNotFoundException if the file is not found
      */
     public static void main(String[] args) throws FileNotFoundException {
-        GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "documents/city_temperature.csv" ) );
+        GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "city_temperature.csv" ) );
         
         // Debug Statements
 //        System.out.println( "gwm.weatherReadingsArrayList.size(): " + gwm.weatherList.size() );
