@@ -27,9 +27,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
      * @throws FileNotFoundException if the file is not found
      */
     public GlobalWeatherManager(File file) throws FileNotFoundException {
-        /** The file is the weather data to be read */
-        /** The file of weather data to be read */
-        /** The number of readings in the file */
+        /* The number of readings in the file */
         this.readingCount = 0;
         
         Scanner myReader = new Scanner( file );
@@ -61,15 +59,13 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         
     }
     
-    /**
+    /** Displays the first three and last three rows of the sorted weather readings ArrayList weatherList.
+     * Then gives the stats for a city using getCityListStats();
      * @param args the command line arguments
      * @throws FileNotFoundException if the file is not found
      */
     public static void main(String[] args) throws FileNotFoundException {
         GlobalWeatherManager gwm = new GlobalWeatherManager( new File( "city_temperature.csv" ) );
-        
-        // Debug Statements
-//        System.out.println( "gwm.weatherReadingsArrayList.size(): " + gwm.weatherList.size() );
         
         System.out.println( ("Reading from the front: ") );
         for (int i = 0; i < 3; i++) {
@@ -82,10 +78,12 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         }
         System.out.println();
         // city state country
-        System.out.println( "gwm.getCityListStats( \"US\", \"Texas\", \"Abilene\" ) ); : " + gwm.getCityListStats( "US"
-                , "Texas", "Abilene" ) );
+        System.out.println( "gwm.getCityListStats( \"US\", \"Texas\", \"Abilene\" ) ); : " +
+                            gwm.getCityListStats( "US", "Texas", "Abilene" ) );
+        
+        // Tests: delete me:
+        System.out.println("gwm.getReading( 99999 ): " + gwm.getReading( 99999 ));
     }
-    
     
     @Override
     public int getReadingCount() {
@@ -141,7 +139,6 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
         int                 starting_index = location;
         int                 count          = 1;
         ArrayList <Integer> years          = new ArrayList <Integer>();
-//        System.out.println( "location: " + location );
         if (location > -1) {
             // Find the leftmost term.
             while (weatherList.get( starting_index ).compareCountryStateCity( searchTerm ) == 0) starting_index--;
@@ -160,7 +157,6 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
             yearsArray[i] = years.get( i );
         }
         
-        ;
         return new CityListStats( starting_index, count, yearsArray );
     }
     
