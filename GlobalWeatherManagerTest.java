@@ -32,15 +32,16 @@ class GlobalWeatherManagerTest {
                 assertEquals(gwm.getReading( 20 ),  ) ;
         */
         WeatherReading reading = new WeatherReading( "Middle East", "Bahrain", "", "Manama", 2, 15, 2015, 68.0 );
-
-//        assertSame( gwm.getReading( 99999 ), reading);
+        
+        assertTrue(gwm.getReading(99999).equals(reading));
 //        assertEquals(gwm.getReading( 99999 ), reading);
-//                    new WeatherReading( "Middle East", "Bahrain", "", "Manama", 2, 15, 2015, 68.0 ) );
+//        assertSame( gwm.getReading( 99999 ), reading);
         
     }
     
     @Test
     void getReadings() {
+//        assertEquals(, gwm.getReadings( 3 ) );
     }
     
     @Test
