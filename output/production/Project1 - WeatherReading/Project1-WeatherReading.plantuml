@@ -1,0 +1,71 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+entity CityListStats << record >> {
+  + CityListStats(int, int, int[]): 
+  + startingIndex(): int
+  + toString(): String
+  + years(): int[]
+  + count(): int
+}
+class GlobalWeatherManager {
+  + GlobalWeatherManager(File): 
+  - readingCount: int
+  + getReadings(int, int): WeatherReading[]
+  + calcLinearRegressionSlope(Integer[], Double[]): double
+  + main(String[]): void
+  + getReading(int): WeatherReading
+  + getCityListStats(String, String, String): CityListStats
+  + iterator(): Iterator<WeatherReading>
+  + getTemperatureLinearRegressionSlope(WeatherReading[]): double
+  + getReadings(int, int, int, int): WeatherReading[]
+   readingCount: int
+}
+interface GlobalWeatherManagerInterface << interface >> {
+  + calcLinearRegressionSlope(Integer[], Double[]): double
+  + getTemperatureLinearRegressionSlope(WeatherReading[]): double
+  + getCityListStats(String, String, String): CityListStats
+  + getReadings(int, int): WeatherReading[]
+  + getReadings(int, int, int, int): WeatherReading[]
+  + iterator(): Iterator<WeatherReading>
+  + getReading(int): WeatherReading
+   readingCount: int
+}
+class GlobalWeatherManagerTest {
+  ~ GlobalWeatherManagerTest(): 
+  ~ calcLinearRegressionSlope(): void
+  ~ getReading(): void
+  ~ testGetReadings(): void
+  ~ getReadings(): void
+  ~ constructor(): void
+  ~ getReadingCount(): void
+  - assertInstanceOf(WeatherReading, Object): void
+  ~ getTemperatureLinearRegressionSlope(): void
+  ~ iterator(): void
+  ~ getCityListStats(): void
+}
+entity WeatherReading << record >> {
+  + WeatherReading(String, String, String, String, int, int, int, double): 
+  + equals(Object): boolean
+  + city(): String
+  + month(): int
+  + avgTemperature(): double
+  + compareTo(WeatherReading): int
+  + region(): String
+  + year(): int
+  + day(): int
+  + compareCountryStateCity(WeatherReading): int
+  + country(): String
+  + state(): String
+}
+
+GlobalWeatherManager           -[#595959,dashed]->  CityListStats                 
+GlobalWeatherManager           -[#008200,dashed]-^  GlobalWeatherManagerInterface 
+GlobalWeatherManager          "1" *-[#595959,plain]-> "weatherList\n*" WeatherReading                
+GlobalWeatherManagerInterface  -[#595959,dashed]->  CityListStats                 
+GlobalWeatherManagerInterface  -[#595959,dashed]->  WeatherReading                
+GlobalWeatherManagerTest      "1" *-[#595959,plain]-> "gwm\n1" GlobalWeatherManager          
+@enduml

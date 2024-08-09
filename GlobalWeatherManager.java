@@ -6,6 +6,7 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -14,7 +15,7 @@ import java.util.*;
  * @author Chris Prabhu
  * @version 2024-07-11
  * */
-public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
+public class GlobalWeatherManager implements GlobalWeatherManagerInterface, Serializable {
     /** The number of readings in the file */
     private       int                        readingCount;
     /** The list of weather readings */
@@ -25,6 +26,14 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
      * Reads in the file and store the data in the weatherReadingsArrayList
      * @param file the dataset of weather data to be read
      * @throws FileNotFoundException if the file is not found
+     */
+    /*
+    *  GWM - GENERAL (2.55 OUT OF 3.00):
+       -  Xlint - clean?
+       -  This class was to be iterable over WR's; that hasn't been done here.  If you have iterator(), you only need a small addition to the class:  implements GlobalWeatherManagerInterface, Iterable<WeatherReading> {
+       -  Nice performance on the GWM constructor; quick!
+       -  Constructor lacks precondition for null File reference.
+       
      */
     public GlobalWeatherManager(File file) throws FileNotFoundException {
         /* The number of readings in the file */
@@ -144,6 +153,7 @@ public class GlobalWeatherManager implements GlobalWeatherManagerInterface {
             while (weatherList.get( starting_index ).compareCountryStateCity( searchTerm ) == 0) starting_index--;
             // 2507503
             // Sweep right to find the rightmost term.
+            // Late can update this to not have to overlap in the sweep.
             while (weatherList.get( starting_index + count ).compareCountryStateCity( searchTerm ) == 0) {
                 count++;
                 if (!years.contains( weatherList.get( starting_index + count ).year() )) {
